@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="heading">Todo app</h1>
+
+    <H2 class="classid"> Class ID</H2>
+    <input type="text" id="Enterclass">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="main"></div>
+    <form onsubmit="Posttodo();return false">
+        Enter here:
+        <input type="text" id="todo" placeholder="Enter text or link">
+        <button type="submit" onclick="todo">Add</button>
+    </form>
+
+
+    <div id="mainresult">
+        <h1 id="result"></h1>
+    </div>
+    </div>
+    <script>
+        function Posttodo() {
+
+
+            let todoText = document.querySelector("#todo").value
+
+            axios.post(`https://lonely-leotard-cod.cyclic.app/todo`, {
+                    text: todoText
+                })
+                .then(function(response) {
+                    console.log(response.data);
+                    document.querySelector("#result").innerHTML = ""
+
+                    response.data.data.map(eachtodo => {
+
+                        document.querySelector("#result").innerHTML += eachtodo + '<br>'
+
+                    })
+
+                })
+
+            .catch(function(error) {
+                console.log(error);
+            })
+
+
+        }
+
+        function getAlltodos() {
+            axios.get(`https://lonely-leotard-cod.cyclic.app/todos`)
+                .then(function(response) {
+                    console.log(response.data);
+                    document.querySelector("#result").innerHTML = ""
+
+                    response.data.data.map(eachtodo => {
+
+                        document.querySelector("#result").innerHTML += eachtodo + '<br>'
+
+                    })
+
+                })
+
+            .catch(function(error) {
+                console.log(error);
+            })
+        }
+
+
+        setInterval(getAlltodos, 3000);
+    </script>
+
+
+</body>
+
+</html>

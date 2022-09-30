@@ -1,0 +1,69 @@
+body {
+    background-image: url("Saylani.jpg");
+    background-repeat: no-repeat;
+    background-size: 1380px 700px;
+}
+
+.heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.classid {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 55px;
+}
+
+#Enterclass {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    width: 200px;
+    height: 25px;
+}
+
+#main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 30px;
+    align-content: center;
+}
+
+#todo {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    width: 400px;
+    height: 40px;
+}
+
+button {
+    border-radius: 25px;
+    width: 100px
+}
+
+
+
+#result {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 25px;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 10px;
+    border-width: 5px 1px;
+   
+   
+   
+}
