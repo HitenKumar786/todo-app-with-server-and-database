@@ -1,17 +1,16 @@
 import express from 'express';
 import cors from 'cors';
+import mongoose from 'mongoose';
+await mongoose.connect('');
+
+
 const app = express()
 const port = process.env.PORT || 3000;
 
 let todos = [];
 
 
-////Uniform interface
 
-// POST:todo/
-// GET:todo/
-// ADD:Updatetodo/
-// DELETE:Removetodo/
 
 app.use(express.json());
 app.use(cors())
