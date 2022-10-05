@@ -5,21 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
-    <h1>Todo App with server</h1>
+    <h1 id="heading">Todo app</h1>
 
-    <form onsubmit="postTodo(); return false">
-        todo: <input id="todo" type="text" required>
-        <button type="submit">Add</button>
+    <H2 id="classid"> Class ID</H2>
+    <input type="text" id="Enterclass">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="main"></div>
+    <form onsubmit="Posttodo();return false">
+        Enter here:
+        <input type="text" id="todo" placeholder="Enter text or link" required>
+        <button type="submit" onclick="todo">Add</button>
+        <button onclick="getAllTodos">refresh</button>
     </form>
-    <button onclick="getAllTodos()">Refresh</button>
 
-    <h3 id="result"> </h3>
 
+    <div id="mainresult">
+        <h1 id="result"></h1>
+    </div>
+    </div>
     <script>
         function postTodo() {
             let todoText = document.querySelector("#todo").value
@@ -32,10 +45,6 @@
 
                     document.querySelector("#result").innerHTML = response.data.message
 
-                    // response.data.data.map(eachTodo => {
-                    //     document.querySelector("#result").innerHTML += eachTodo
-                    //     document.querySelector("#result").innerHTML += '<br>'
-                    // })
 
                 })
                 .catch(function (error) {
@@ -62,8 +71,8 @@
                 })
         }
 
-        setInterval(getAllTodos, 1000);
 
+        // setInterval(getAllTodos, 1000);
     </script>
 
 
