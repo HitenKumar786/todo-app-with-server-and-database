@@ -21,7 +21,7 @@
     <br>
     <br>
     <div id="main"></div>
-    <form onsubmit="Posttodo();return false">
+    <form onsubmit="postTodo();return false">
         Enter here:
         <input type="text" id="todo" placeholder="Enter text or link" required>
         <button type="submit" onclick="todo">Add</button>
@@ -37,7 +37,7 @@
         function postTodo() {
             let todoText = document.querySelector("#todo").value
 
-            axios.post(`https://lonely-leotard-cod.cyclic.app/todos`, {
+            axios.post(`https://lonely-leotard-cod.cyclic.app/todo`, {
                 text: todoText
             })
                 .then(function (response) {
@@ -56,7 +56,7 @@
         function getAllTodos() {
             axios.get(`https://lonely-leotard-cod.cyclic.app/todos`)
                 .then(function (response) {
-                    console.log(response.data);
+                    console.log("response.data: ", response.data);
 
                     document.querySelector("#result").innerHTML = ""
 
