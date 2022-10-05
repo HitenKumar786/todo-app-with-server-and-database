@@ -43,13 +43,13 @@
                 })
                 .then(function(response) {
                     console.log(response.data);
-                    document.querySelector("#result").innerHTML = ""
+                    document.querySelector("#result").innerHTML = response.data,message
 
-                    response.data.data.map(eachtodo => {
+                    // response.data.data.map(eachtodo => {
 
-                        document.querySelector("#result").innerHTML += eachtodo + '<br>'
+                    //     document.querySelector("#result").innerHTML += eachtodo + '<br>'
 
-                    })
+                    // })
 
                 })
 
@@ -68,7 +68,7 @@
 
                     response.data.data.map(eachtodo => {
 
-                        document.querySelector("#result").innerHTML += eachtodo + '<br>'
+                        document.querySelector("#result").innerHTML += eachtodo.text + '<br>'
 
                     })
 
