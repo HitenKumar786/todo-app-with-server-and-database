@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    <h1 class="heading">Todo app</h1>
+    <h1 id="heading">Todo app</h1>
 
-    <H2 class="classid"> Class ID</H2>
+    <H2 id="classid"> Class ID</H2>
     <input type="text" id="Enterclass">
     <br>
     <br>
@@ -23,7 +23,7 @@
     <div id="main"></div>
     <form onsubmit="Posttodo();return false">
         Enter here:
-        <input type="text" id="todo" placeholder="Enter text or link">
+        <input type="text" id="todo" placeholder="Enter text or link" required>
         <button type="submit" onclick="todo">Add</button>
     </form>
 
@@ -33,50 +33,41 @@
     </div>
     </div>
     <script>
-        function Posttodo() {
-
-
+        function postTodo() {
             let todoText = document.querySelector("#todo").value
 
-            axios.post(`https://lonely-leotard-cod.cyclic.app/todo`, {
-                    text: todoText
-                })
-                .then(function(response) {
+            axios.post(`https://lonely-leotard-cod.cyclic.app/todos`, {
+                text: todoText
+            })
+                .then(function (response) {
                     console.log(response.data);
+
                     document.querySelector("#result").innerHTML = response.data.message
 
-                    // response.data.data.map(eachtodo => {
-
-                    //     document.querySelector("#result").innerHTML += eachtodo + '<br>'
-
-                    // })
 
                 })
-
-            .catch(function(error) {
-                console.log(error);
-            })
-
+                .catch(function (error) {
+                    console.log(error);
+                })
 
         }
 
-        function getAlltodos() {
+        function getAllTodos() {
             axios.get(`https://lonely-leotard-cod.cyclic.app/todos`)
-                .then(function(response) {
+                .then(function (response) {
                     console.log(response.data);
+
                     document.querySelector("#result").innerHTML = ""
 
-                    response.data.data.map(eachtodo => {
-
-                        document.querySelector("#result").innerHTML += eachtodo.text + '<br>'
-
+                    response.data.data.map(eachTodo => {
+                        document.querySelector("#result").innerHTML += eachTodo.text
+                        document.querySelector("#result").innerHTML += '<br>'
                     })
 
                 })
-
-            .catch(function(error) {
-                console.log(error);
-            })
+                .catch(function (error) {
+                    console.log(error);
+                })
         }
 
 

@@ -20,7 +20,6 @@
     "homepage": "https://github.com/HitenKumar786/Assignment-04#readme",
     "dependencies": {
         "cors": "^2.8.5",
-        "cros": "^1.0.1",
         "express": "^4.18.1",
         "i": "^0.3.7",
         "mongodb": "^4.10.0",
