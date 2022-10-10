@@ -20,10 +20,10 @@
     "homepage": "https://github.com/HitenKumar786/Assignment-04#readme",
     "dependencies": {
         "cors": "^2.8.5",
-        "express": "^4.18.1",
+        "express": "^4.18.2",
         "i": "^0.3.7",
         "mongodb": "^4.10.0",
-        "mongoose": "^6.6.4",
+        "mongoose": "^6.6.5",
         "nodemon": "^2.0.20"
     }
 }

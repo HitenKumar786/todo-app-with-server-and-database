@@ -30,7 +30,7 @@ app.post('/todo', (req, res) => {
             console.log(saved);
 
             res.send({
-                message: "your Data is saved"
+            
             })
         } else {
             res.status(500).send({
@@ -39,6 +39,16 @@ app.post('/todo', (req, res) => {
         }
     })
 })
+
+
+app.get('/todos', (req, res) => {
+
+    todoModel.find({}, (err, data) => {
+        if (!err) {
+            res.send({
+                message: "here is you todo list",
+                data: data
+            })
 
 
 app.get('/todos', (req, res) => {
