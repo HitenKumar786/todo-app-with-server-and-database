@@ -21,7 +21,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors())
 
-
+/////////////////////////push///////////////////////////////////
 
 app.post('/todo', (req, res) => {
 
@@ -40,6 +40,8 @@ app.post('/todo', (req, res) => {
     })
 });
 
+/////////////////////////get///////////////////////////////////
+
 app.get('/todos', (req, res) => {
 
     todoModel.find({}, (err, data) => {
@@ -55,6 +57,31 @@ app.get('/todos', (req, res) => {
         }
     });
 })
+
+
+/////////////////////////delete///////////////////////////////////
+
+app.delete('/todos/:id', (req, res) => {
+    let id = req.params.id
+
+    todoModel.findByIdAndDelete(id, (err, docs) => {
+        if (!err) {
+            console.log(docs)
+            res.send({
+                message: 'here is Delete todo',
+               
+            })
+
+        } else {
+            res.status(500).send({
+                message: "Server Error"
+            })
+
+        }
+    })
+
+})
+
 
 app.listen(port, () => {
 
