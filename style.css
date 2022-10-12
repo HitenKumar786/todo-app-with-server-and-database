@@ -61,7 +61,11 @@ button {
     width: 100%;
    text-align: right;
    }
-
+#message{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   
+}
 #result {
     display: flex;
     flex-wrap: wrap;

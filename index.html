@@ -33,10 +33,12 @@
 
 
     <div id="mainresult">
+        <h3 id="message"></h3>
         <h1 id="result"></h1>
     </div>
     </div>
     <script>
+     
 
     //const baseUrl = "http://localhost:3000"
       const baseUrl = "https://easy-cyan-cocoon-tam.cyclic.app"
@@ -56,8 +58,11 @@
                 }
             }
 
+            
+
 
         function postTodo() {
+          
             let todoText = document.querySelector("#todo").value
 
             axios.post(`${baseUrl}/todo`, {
@@ -65,8 +70,12 @@
             })
                 .then(function (response) {
                     console.log(response.data);
+                    getAllTodos();
 
-                    document.querySelector("#result").innerHTML = ''
+                    document.querySelector("#message").innerHTML = todoText+" " + "is saved";
+                    setTimeout(()=>{
+                        document.querySelector("#message").innerHTML = "";
+                    },2000);
 
 
                 })
@@ -81,7 +90,7 @@
                 .then(function (response) {
                     console.log("response.data: ", response.data);
 
-                    document.querySelector("#result").innerHTML = ""
+                    document.querySelector("#result").innerHTML = " "
 
                     response.data.data.map(eachTodo => {
                         document.querySelector("#result").innerHTML += ` <div id="btn">${eachTodo.text}<button onclick='deleteTodos(\`${JSON.stringify(eachTodo)}\`)'  class="btn btn-primary" >Delete</button></div>`
@@ -94,8 +103,9 @@
                 })
         }
 
+        getAllTodos();
 
-         setInterval(getAllTodos, 10000);
+         setInterval(getAllTodos, 5000);
     </script>
 
 

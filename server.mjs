@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { text } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
@@ -30,7 +30,7 @@ app.post('/todo', (req, res) => {
             console.log(saved);
 
             res.send({
-            message:"your todo is saved"
+            message:''
             })
         } else {
             res.status(500).send({
@@ -61,14 +61,39 @@ app.get('/todos', (req, res) => {
 
 /////////////////////////delete///////////////////////////////////
 
-app.delete('/todos/:id', (req, res) => {
+app.delete('/todo/:id', (req, res) => {
     let id = req.params.id
 
-    todoModel.findByIdAndDelete(id, (err, docs) => {
+    todoModel.findByIdAndDelete(id, (err, data) => {
+        if (!err) {
+            console.log(data)
+            res.send({
+                message: 'here is Delete todo',
+               
+            })
+if(data.deletedCount !== 0)
+{
+    res.send({
+        message:"No todo has been found"
+
+    })
+}
+        } else {
+            res.status(500).send({
+                message: "Server Error"
+            })
+
+        }
+    })
+
+})
+
+app.delete('/todos/', (req, res) => {
+    todoModel.deleteMany((err, docs) => {
         if (!err) {
             console.log(docs)
             res.send({
-                message: 'here is Delete todo',
+                message: 'All todos Has Been Deleted Successfully',
                
             })
 
