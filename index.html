@@ -27,9 +27,9 @@
         Enter here:
         <input type="text" id="todo" placeholder="Enter text or link" required>
         <button type="submit" onclick="todo">Add</button>
-        <button type="submit" onclick="deletes() " class="btn btn-primary">Delete</button>
+        <button type="submit" onclick="deletes() " class="btn btn-primary">All Delete</button>
     </form>
-
+ 
 
 
     <div id="mainresult">
@@ -48,7 +48,7 @@
                 try{
                     const data = JSON.parse(data_json)
                     
-                    axios.delete(`${baseUrl}/todos/${data._id}`).then(function (response){
+                    axios.delete(`${baseUrl}/todo/${data._id}`).then(function (response){
                         getAllTodos()
                         console.log(response)
                     })

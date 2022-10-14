@@ -64,7 +64,7 @@ app.get('/todos', (req, res) => {
 app.delete('/todo/:id', (req, res) => {
     let id = req.params.id
 
-    todoModel.findByIdAndDelete(id, (err, data) => {
+    todoModel.deleteOne({id}, (err, data) => {
         if (!err) {
             console.log(data)
             res.send({
@@ -74,7 +74,12 @@ app.delete('/todo/:id', (req, res) => {
 if(data.deletedCount !== 0)
 {
     res.send({
-        message:"No todo has been found"
+        message:"todo has been deleted successfully",
+
+    })
+}else{
+    res.send({
+        message:"No todo has been found with this id"+id,
 
     })
 }
@@ -89,7 +94,7 @@ if(data.deletedCount !== 0)
 })
 
 app.delete('/todos/', (req, res) => {
-    todoModel.deleteMany((err, docs) => {
+    todoModel.deleteMany({},(err, docs) => {
         if (!err) {
             console.log(docs)
             res.send({
@@ -103,7 +108,7 @@ app.delete('/todos/', (req, res) => {
             })
 
         }
-    })
+    });
 
 })
 
