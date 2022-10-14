@@ -29,7 +29,7 @@
         <button type="submit" onclick="todo">Add</button>
     </form>
  
-<button type="submit" id="allDelete" onclick="deletes() ">All Delete</button>
+<button type="submit" id="allDelete" onclick="deletes(deleteAllTodos) ">All Delete</button>
 
 
     <div id="mainresult">
@@ -40,19 +40,40 @@
     <script>
      
 
-    //const baseUrl = "http://localhost:3000"
-      const baseUrl = "https://easy-cyan-cocoon-tam.cyclic.app"
-      
 
-    
+      
+let baseUrl = (document.location.protocol === 'https')?
+"https://easy-cyan-cocoon-tam.cyclic.app":"http://localhost:3000";
+
+      let deleteAllTodos = async ()=>{
+                try{
+                    
+                    
+                let response = await axios.delete(`${baseUrl}/todo/${data._id}`).then(function (response){
+                        getAllTodos()
+                        console.log(response)
+                        document.querySelector("#message").innerHTML=message.dat.message
+                        setTimeout(()=>{
+                        document.querySelector("#message").innerHTML = "";
+                    },2000);
+                    })
+                    console.log(data)
+                }catch(e){
+                    console.log(e)
+                }
+            }
        
-            function deleteTodos (data_json){
+            let deleteTodos =  async (data_json)=>{
                 try{
                     const data = JSON.parse(data_json)
                     
-                    axios.delete(`${baseUrl}/todo/${data._id}`).then(function (response){
+                let response = await axios.delete(`${baseUrl}/todo/${data._id}`).then(function (response){
                         getAllTodos()
                         console.log(response)
+                        document.querySelector("#message").innerHTML=message.dat.message
+                        setTimeout(()=>{
+                        document.querySelector("#message").innerHTML = "";
+                    },2000);
                     })
                     console.log(data)
                 }catch(e){
@@ -95,7 +116,7 @@
                     document.querySelector("#result").innerHTML = " "
 
                     response.data.data.map(eachTodo => {
-                        document.querySelector("#result").innerHTML += ` <div id="btn">${eachTodo.text}<button onclick='deleteTodos(\`${JSON.stringify(eachTodo)}\`)'  class="btn btn-primary" >Delete</button></div>`
+                        document.querySelector("#result").innerHTML += ` <div id="btn">${eachTodo.text}<button onclick='deleteTodos(\`${JSON.stringify(eachTodo)}\`)'  class="btn btn-primary" >Delete</button> <button> </button></div>`
                         document.querySelector("#result").innerHTML += '<br>'
                     })
 
