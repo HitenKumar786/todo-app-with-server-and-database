@@ -44,20 +44,9 @@
       const baseUrl = "https://easy-cyan-cocoon-tam.cyclic.app"
       
 
-      function deleteAllTodos (data_json){
-                try{
-                    const data = JSON.parse(data_json)
-                    
-                    axios.delete(`${baseUrl}/todos/${}`).then(function (response){
-                        getAllTodos()
-                        console.log(response)
-                    })
-                    console.log(data)
-                }catch(e){
-                    console.log(e)
-                }
-            }
-       function deleteTodos (data_json){
+    
+       
+            function deleteTodos (data_json){
                 try{
                     const data = JSON.parse(data_json)
                     
