@@ -29,7 +29,7 @@
         <button type="submit" onclick="todo">Add</button>
     </form>
  
-    <button type="submit" onclick="deletes() " class="btn btn-primary">All Delete</button>
+<button type="submit" id="allDelete" onclick="deletes() ">All Delete</button>
 
 
     <div id="mainresult">
@@ -44,6 +44,19 @@
       const baseUrl = "https://easy-cyan-cocoon-tam.cyclic.app"
       
 
+      function deleteAllTodos (data_json){
+                try{
+                    const data = JSON.parse(data_json)
+                    
+                    axios.delete(`${baseUrl}/todos/${}`).then(function (response){
+                        getAllTodos()
+                        console.log(response)
+                    })
+                    console.log(data)
+                }catch(e){
+                    console.log(e)
+                }
+            }
        function deleteTodos (data_json){
                 try{
                     const data = JSON.parse(data_json)

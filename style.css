@@ -61,10 +61,22 @@ button {
     width: 100%;
    text-align: right;
    }
+
+#allDelete{
+    display: flex;
+    flex-wrap: wrap;
+ 
+    margin-left: 970px;
+    margin-top: -43px;
+
+  justify-content: center;
+    padding: 12px;  
+}
 #message{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;   
+
+    justify-content: left;   
 }
 #result {
     display: flex;
