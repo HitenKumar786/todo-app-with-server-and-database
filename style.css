@@ -63,13 +63,13 @@ button {
    text-align: right;
    }
 
-#allDelete{
+/* #allDelete{
     display: flex; 
     margin-left: 1080px;
     margin-top: -43px;
   justify-content: center;
     padding: 12px;  
-}
+} */
 #message{
     display: flex;
     flex-wrap: wrap;

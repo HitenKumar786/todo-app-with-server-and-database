@@ -30,7 +30,7 @@ app.post('/todo', (req, res) => {
             console.log(saved);
 
             res.send({
-            message:''
+            message:"your todo is saved",
             })
         } else {
             res.status(500).send({
@@ -58,28 +58,33 @@ app.get('/todos', (req, res) => {
     });
 })
 
-app.put('/todos/id',async (req,res)=>{
-    try{
-    let data = await todoModel
-    .findByIdAndUpdate(
-        req.params.id,
-        {text: req.body.text},
-        {new:true}
-        )
-        .exec();
 
-    
-        console.log('update: ',data);
+/////////////////////////Update///////////////////////////////////
+app.put('/todo/:id', async (req, res) => {
+
+    try {
+        let data = await todoModel
+            .findByIdAndUpdate(
+                req.params.id,
+                { text: req.body.text },
+                { new: true }
+            )
+            .exec();
+
+        console.log('updated: ', data);
+
         res.send({
-            message:"todois updated Successfully",
-            data: data 
+            message: "todo is updated successfully",
+            data: data
         })
-}catch(error){
-    res.status(500).send({
-        message:"Server Error"
-    })
-}
+
+    } catch (error) {
+        res.status(500).send({
+            message: "server error"
+        })
+    }
 })
+
 /////////////////////////delete///////////////////////////////////
 
 app.delete('/todo/:id', (req, res) => {
@@ -116,25 +121,20 @@ if(data.deletedCount !== 0)
 
 /////////////////////////All delete///////////////////////////////////
 
-app.delete('/todos/', (req, res) => {
-    todoModel.deleteMany({},(err, docs) => {
-        if (!err) {
-            console.log(docs)
-            res.send({
-                message: 'All todos Has Been Deleted Successfully',
-               
-            })
+app.delete('/todos', (req, res) => {
 
+    todoModel.deleteMany({}, (err, data) => {
+        if (!err) {
+            res.send({
+                message: "All Todo has been deleted successfully",
+            })
         } else {
             res.status(500).send({
-                message: "Server Error"
+                message: "server error"
             })
-
         }
     });
-
 })
-
 
 app.listen(port, () => {
 
