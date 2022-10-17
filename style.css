@@ -76,15 +76,39 @@ button {
 
     justify-content: left;   
 }
-#result {
+#span{
+    display: inline-block;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: end;
+}
+#result {
+  
+
+display: inline-block;
+width: 90%;
+ 
     font-size: 25px;
     border: 2px solid black;
     border-radius: 25px;
     padding: 10px;
     border-width: 5px 1px;
+
    
    
    
 }
+#btns{
+    align-content: flex-end;
+    display: inline-block;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+#spans{
+    display: inline-block;
+    display: flex;
+ 
+    width: 100%;
+    
+}
+

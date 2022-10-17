@@ -21,7 +21,7 @@
 
     <H2 id="classid"> Class ID</H2>
     <input type="text" id="Enterclass">
-    <br>
+    
     <br>
     <br>
     <br>
@@ -106,12 +106,18 @@
 
 
                     document.querySelector("#message").innerHTML = todoText + " " + "is saved";
+            
+
                     setTimeout(() => {
                         document.querySelector("#message").innerHTML = "";
+                       
+
                     }, 2000);
+    
 
 
                 })
+                
                 .catch(function (error) {
                     console.log(error);
                 })
@@ -155,38 +161,44 @@
             }
 
 
-            function getAllTodos() {
-                axios.get(`${baseUrl}/todos`)
-                    .then(function (response) {
-                        console.log(response.data);
 
-                        document.querySelector("#result").innerHTML = "";
 
-                        response.data.data.map(eachTodo => {
-                            document.querySelector("#result").innerHTML += `<span id='span-${eachTodo._id}'> ${eachTodo.text} </span>`;
-                            document.querySelector("#result").innerHTML +=
-                                `<form id='form-${eachTodo._id}' style="display: none;" onsubmit="updateTodo('${eachTodo._id}'); return false"> 
+        }
+
+        function getAllTodos() {
+            console.log("I am get all todo function");
+
+            axios.get(`${baseUrl}/todos`)
+                .then(function (response) {
+                    console.log(response.data);
+
+                    document.querySelector("#result").innerHTML = "";
+                    //document.querySelector("#result").innerHTML += '<br>';
+-
+                    response.data.data.map(eachTodo => {
+                        document.querySelector("#result").innerHTML += `<div id="spans"><span id='span-${eachTodo._id}'> ${eachTodo.text} </span> `;
+                        document.querySelector("#result").innerHTML +=
+                            `<form id='form-${eachTodo._id}' style="display: none;" onsubmit="updateTodo('${eachTodo._id}'); return false"> 
                                 <input id='input-${eachTodo._id}' value='${eachTodo.text}'  />
                                 <button type="submit">Update</button>
                             </form>`;
 
-                            document.querySelector("#result").innerHTML +=
-                                `&nbsp;&nbsp; <button onclick="deleteTodo('${eachTodo._id}')" id='delete-${eachTodo._id}'> Delete </button>
-                            <button onclick="editTodo('${eachTodo._id}')" id='edit-${eachTodo._id}'> Edit </button>`
-
-                            document.querySelector("#result").innerHTML += '<br>'
-                        })
+                        document.querySelector("#result").innerHTML +=
+                      
+                            `&nbsp;&nbsp;<div id="btns"> <button onclick="deleteTodo('${eachTodo._id}')" id='delete-${eachTodo._id}'> Delete </button>
+                            <button onclick="editTodo('${eachTodo._id}')" id='edit-${eachTodo._id}'> Edit </button></div></div> `
+                            document.querySelector('#result').innerHTML+='<br>'
 
                     })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-            }
 
-            getAllTodos();
-            setInterval(getAllTodos, 10000);
-
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         }
+
+        getAllTodos();
+        setInterval(getAllTodos, 10000);
     </script>
 
 
