@@ -89,36 +89,30 @@ app.put('/todo/:id', async (req, res) => {
 /////////////////////////delete///////////////////////////////////
 
 app.delete('/todo/:id', (req, res) => {
-    let id = req.params.id
 
-    todoModel.deleteOne({id}, (err, data) => {
+    todoModel.deleteOne({ _id: req.params.id }, (err, deletedData) => {
+        console.log("deleted: ", deletedData);
         if (!err) {
-            console.log(data)
-            res.send({
-                message: 'here is Delete todo',
-               
-            })
-if(data.deletedCount !== 0)
-{
-    res.send({
-        message:"todo has been deleted successfully",
 
-    })
-}else{
-    res.send({
-        message:"No todo has been found with this id"+id,
+            if (deletedData.deletedCount !== 0) {
+                res.send({
+                    message: "Todo has been deleted successfully",
+                })
+            } else {
+                res.send({
+                    message: "No todo found with this id: " + req.params.id,
+                })
+            }
 
-    })
-}
+
         } else {
             res.status(500).send({
-                message: "Server Error"
+                message: "server error"
             })
-
         }
-    })
-
+    });
 })
+
 
 /////////////////////////All delete///////////////////////////////////
 

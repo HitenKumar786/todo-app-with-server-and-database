@@ -72,23 +72,22 @@
 
 
         }
-
-        let deleteTodos = async (data_json) => {
+        let deleteTodo = async (id) => {
             try {
-                const data = JSON.parse(data_json)
+                let response = await axios.delete(`${baseUrl}/todo/${id}`)
 
-                let response = await axios.delete(`${baseUrl}/todos/${data._id}`).then(function (response) {
-                    getAllTodos()
-                    console.log(response)
-                    document.querySelector("#message").innerHTML = message.dat.message
-                    setTimeout(() => {
-                        document.querySelector("#message").innerHTML = "";
-                    }, 2000);
-                })
-                console.log(data)
-            } catch (e) {
-                console.log(e)
+                document.querySelector("#message").innerHTML = response.data.message
+                setTimeout(() => {
+                    document.querySelector("#message").innerHTML = ""
+                }, 2000);
+
+                getAllTodos();
+
+            } catch (error) {
+                console.log("error: ", error);
             }
+
+
         }
 
 
@@ -129,11 +128,10 @@
 
             console.log('edit id: ', id)
 
-            document.querySelector(`#form-$id`).style.display = "inline"
-
-            document.querySelector(`#span-$id`).style.display = "none"
-            document.querySelector(`#delete-$id`).style.display = "none"
-            document.querySelector(`#edit-$id`).style.display = "none"
+            document.querySelector(`#form-${id}`).style.display = "inline"
+            document.querySelector(`#span-${id}`).style.display = "none"
+            document.querySelector(`#delete-${id}`).style.display = "none"
+            document.querySelector(`#edit-${id}`).style.display = "none"
 
 
         }
@@ -152,7 +150,7 @@
                 document.querySelector("#message").innerHTML = response.data.message
                 setTimeout(() => {
                     document.querySelector("#message").innerHTML = ""
-                }, 2000);
+                }, 100000);
 
                 getAllTodos();
 
@@ -198,7 +196,7 @@
         }
 
         getAllTodos();
-        setInterval(getAllTodos, 10000);
+        setInterval(getAllTodos, 5000);
     </script>
 
 
